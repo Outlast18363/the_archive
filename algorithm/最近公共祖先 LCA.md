@@ -91,7 +91,7 @@ public class Main {
         int n = in.nextInt(), m = in.nextInt(), s = in.nextInt(); //节点数，询问数，根节点标号
         adj = new ArrayList[n+1];
         for (int i = 0; i <= n; i++) adj[i] = new ArrayList<>();
-        dep = new int[n+1];
+        dep = new int[n+1]; //dep[i]: 节点 i 的深度
         fa = new int[n+1][20]; //fa[i][k]表示从节点 i 往上跳 2^k 步的父节点
 
         for(int i=1; i<n; i++){
