@@ -134,8 +134,10 @@ public class Main {
         for(int i=19; i>=0; i--){
             //当祖先不是一样的时候继续跳，这样保证调到 LCA 的前一层
             //(在树中一个子节点不可能有多个父节点，所以 father 一样代表 LCA 已经过了，不能跳)
-            if(fa[u][i] != fa[v][i]){ 
-                u = fa[u][i]; //没过 LCA 在的层数就继续跳
+            //也就是说在 LCA 的层数以后，俩个节点在每个层数的father都会是一样的
+
+            if(fa[u][i] != fa[v][i]){ //没过 LCA 在的层数就继续跳
+                u = fa[u][i];
                 v = fa[v][i];
             }
         }
