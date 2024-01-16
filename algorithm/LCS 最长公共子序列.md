@@ -49,11 +49,13 @@ String b = "abc";
 <img width="406" alt="image" src="https://github.com/Outlast18363/the_archive/assets/108510344/4d310691-de20-4dd4-a415-f96dfae8973b">
 
 
-图片注释：a，b的前缀 LCS 不变，然后 a，b的 LCS 肯定是在a，b的前缀 LCS上加入他们最后一个相同的字符。（这里的例子是当只剩最后一个字符没有递推到时的情况）
+图片注释：a，b的前缀 LCS 不变，然后 a，b的 LCS 肯定是在a，b的前缀 LCS的基础上加入他们最后一个相同的字符。（这里的例子是当只剩最后一个字符没有递推到时的情况）
 
 
 
 第二
+
+<img width="708" alt="image" src="https://github.com/Outlast18363/the_archive/assets/108510344/c621aba1-61fd-4407-955a-2e9f16365980">
 
 
 <img width="399" alt="image" src="https://github.com/Outlast18363/the_archive/assets/108510344/54778e4f-d741-4913-aa14-f931d230c128">
