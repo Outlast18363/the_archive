@@ -12,7 +12,7 @@
 
 
 
-因为我们最终想要求出a 整个和b 整个的 LCS，所以我们最终想知道$LCS[a.length()][b.length()]$
+因为我们最终想要求出a 整个和b 整个的 LCS，所以我们最终想知道 $LCS[a.length()][b.length()]$
 
 **举例**
 
