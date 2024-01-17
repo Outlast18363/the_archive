@@ -112,7 +112,7 @@ public class Main {
         dep[u] = dep[father] + 1;
 
         fa[u][0] = father;
-        for(int i=1; i<=19; i++) fa[u][i] = fa[fa[u][i-1]][i-1]; //对这个节点倍增求它的所有父亲
+        for(int i=1; i<=19; i++) fa[u][i] = fa[ fa[u][i-1] ][i-1]; //对这个节点倍增求它的所有父亲
         
         for(int v : adj[u]) { //对 u 的子节点继续 dfs
             if(v != father) dfs(v, u);
