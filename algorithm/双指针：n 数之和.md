@@ -9,7 +9,7 @@
 ## 拆分问题
 对于4 sum，将其拆分成找一个数 i 和一个 3 sum，使得那个 $i + 3 sum == target_4$ ($target_4$ 为 4 个数的目标和)
 
-对于3 sum，将其拆分成找一个数 j 和一个 2 sum，使得那个 $j + 2 sum == target_3$
+对于3 sum，将其拆分成找一个数 j 和一个 2 sum，使得那个 $j + 2 sum == target_3$ （ $target_3$ 为 $target_4 - a[i]$ 的值，也就是给定 sum4 指针情况下需要达到的3数sum，以达成 $target_4$ ）。
 
 对于2 sum，对数组排序，然后l，r 两个指针往中间找 2 sum，使得 $l + r = target_2$
 
