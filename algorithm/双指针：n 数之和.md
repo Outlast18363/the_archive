@@ -48,47 +48,47 @@ public class Main {
         in.close();
     }
     static void fourSum(int[] a, int target) {
-            int n = a.length, t = target;
-            Arrays.sort(a);
+        int n = a.length, t = target;
+        Arrays.sort(a);
 
-            //4sum 部分
-            for(int i = 0; i < n-3; i++){
-                int max3 = a[n-1] + a[n-2] + a[n-3];
-                int min3 = a[i+1] + a[i+2] + a[i+3];
-                
+        //4sum 部分
+        for(int i = 0; i < n-3; i++){
+            int max3 = a[n-1] + a[n-2] + a[n-3];
+            int min3 = a[i+1] + a[i+2] + a[i+3];
+
+            //优化1
+            if(a[i] + max3 < t) continue;
+            if(a[i] + min3 > t) break;
+
+            int n1 = t - a[i];
+
+            //3sum 部分
+            for(int j = i+1; j < n-2; j++){
+                int max2 = a[n-1] + a[n-2];
+                int min2 = a[j+1] + a[j+2];
+
                 //优化1
-                if(a[i] + max3 < t) continue;
-                if(a[i] + min3 > t) break;
+                if(a[j] + max2 < n1) continue;
+                if(a[j] + min2 > n1) break;
 
-                int n1 = t - a[i];
+                int n2 = n1 - a[j];
 
-                //3sum 部分
-                for(int j = i+1; j < n-2; j++){
-                    int max2 = a[n-1] + a[n-2];
-                    int min2 = a[j+1] + a[j+2];
-
-                    //优化1
-                    if(a[j] + max2 < n1) continue;
-                    if(a[j] + min2 > n1) break;
-
-                    int n2 = n1 - a[j];
-
-                    //2sum 部分
-                    int l = j + 1; int r = n-1;
-                    while(r >= 0 && l < n && l < r){
-                        if(n2 - (a[l] + a[r]) == 0) { //找到一组解
-                            in.println(a[i] + " " + a[j] + " " + a[l] + " " +a[r]);
-                            while(i < n-1 && a[i] == a[i+1]) i++; //优化 2：在成功的情况下移到数值不同的地方
-                            while(j < n-1 && a[j] == a[j+1]) j++;
-                            break;
-                        }
-                        else if(n2 - (a[l] + a[r]) > 0) l++;
-                        else r--;
+                //2sum 部分
+                int l = j + 1; int r = n-1;
+                while(r >= 0 && l < n && l < r){
+                    if(n2 - (a[l] + a[r]) == 0) { //找到一组解
+                        in.println(a[i] + " " + a[j] + " " + a[l] + " " +a[r]);
+                        while(i < n-1 && a[i] == a[i+1]) i++; //优化 2：在成功的情况下移到数值不同的地方
+                        while(j < n-1 && a[j] == a[j+1]) j++;
+                        break;
                     }
+                    else if(n2 - (a[l] + a[r]) > 0) l++;
+                    else r--;
                 }
             }
         }
     }
+}
 
 class Kattio extends PrintWriter {
     private BufferedReader r;
