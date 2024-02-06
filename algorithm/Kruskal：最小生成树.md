@@ -1,4 +1,143 @@
-# [USACO3.1] 最短网络 Agri-Net
+# 第一题：【模板】最小生成树
+
+## 题目描述
+
+如题，给出一个无向图，求出最小生成树，如果该图不连通，则输出 `orz`。
+
+## 输入格式
+
+第一行包含两个整数 $N,M$，表示该图共有 $N$ 个结点和 $M$ 条无向边。
+
+接下来 $M$ 行每行包含三个整数 $X_i,Y_i,Z_i$，表示有一条长度为 $Z_i$ 的无向边连接结点 $X_i,Y_i$。
+
+## 输出格式
+
+如果该图连通，则输出一个整数表示最小生成树的各边的长度之和。如果该图不连通则输出 `orz`。
+
+## 样例 #1
+
+### 样例输入 #1
+
+```
+4 5
+1 2 2
+1 3 2
+1 4 3
+2 3 4
+3 4 3
+```
+
+### 样例输出 #1
+
+```
+7
+```
+
+## 提示
+
+数据规模：
+
+对于 $20\%$ 的数据，$N\le 5$，$M\le 20$。
+
+对于 $40\%$ 的数据，$N\le 50$，$M\le 2500$。
+
+对于 $70\%$ 的数据，$N\le 500$，$M\le 10^4$。
+
+对于 $100\%$ 的数据：$1\le N\le 5000$，$1\le M\le 2\times 10^5$，$1\le Z_i \le 10^4$。
+
+
+样例解释：
+
+ ![](https://cdn.luogu.com.cn/upload/pic/2259.png) 
+
+所以最小生成树的总边权为 $2+2+3=7$。
+
+## 代码：
+
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static Kattio in;
+    static int[] parent;
+    static class Edge{
+        int a, b, w;
+        Edge(int a, int b, int z){
+            this.a = a; this.b = b; w = z; //w: 权值
+        }
+    }
+    public static void main(String[] args) throws IOException {
+        in = new Kattio();
+        int n = in.nextInt(), m = in.nextInt();
+        parent = new int[n + 1];
+        PriorityQueue<Edge> graph = new PriorityQueue<Edge>(m, (a, b) -> a.w - b.w);
+        for(int i = 1; i <= n; i++) parent[i] = i;
+        for(int i = 0; i < m; i++){
+            int a = in.nextInt(), b = in.nextInt();
+            graph.add(new Edge(a, b, in.nextInt()));
+        }
+
+        long sum = 0, c = n;
+        while(!graph.isEmpty()){
+            Edge e = graph.poll();
+            if(find(e.a) != find(e.b)){
+                union(e.a, e.b);
+                sum += e.w;
+                c--;
+            }
+            if(c == 1) break;
+        }
+        if(c != 1) in.print("orz");
+        else in.print(sum);
+        in.close();
+    }
+    static void union(int a, int b){
+        int pa = find(a), pb = find(b);
+        if(pa == pb) return;
+        parent[pa] = parent[pb];
+    }
+    static int find(int v){
+        if(parent[v] == v) return v;
+        return parent[v] = find(parent[v]);
+    }
+}
+
+class Kattio extends PrintWriter {
+    private BufferedReader r;
+    private StringTokenizer st;
+    // standard input
+    public Kattio() { this(System.in,System.out); }
+    public Kattio(InputStream i, OutputStream o) {
+        super(o);
+        r = new BufferedReader(new InputStreamReader(i));
+    }
+    // USACO-style file input
+    public Kattio(String problemName) throws IOException {
+        super(problemName+".out");
+        r = new BufferedReader(new FileReader(problemName+".in"));
+    }
+    // returns null if no more input
+    public String next() {
+        try {
+            while (st == null || !st.hasMoreTokens())
+                st = new StringTokenizer(r.readLine());
+            return st.nextToken();
+        } catch (Exception e) {}
+        return null;
+    }
+    public String nextLine() {
+        try {return r.readLine();} catch (Exception e) {}
+        return null;
+    }
+    public int nextInt() { return Integer.parseInt(next()); }
+    public double nextDouble() { return Double.parseDouble(next()); }
+    public long nextLong() { return Long.parseLong(next()); }
+}
+```
+---
+
+# 第二题：[USACO3.1] 最短网络 Agri-Net
 
 ## 题目背景
 
