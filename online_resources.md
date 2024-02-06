@@ -10,6 +10,9 @@ https://blog.csdn.net/weixin_72076848/article/details/125554161
 cpp竞赛卡常小技巧：
 https://zhuanlan.zhihu.com/p/608989466
 
+Johnson全源最短路：
+https://www.cnblogs.com/yspm/p/12246406.html
+
 ### 可能会用到：
 基环树：
 https://www.luogu.com.cn/blog/ShadderLeave/ji-huan-shu-bi-ji
