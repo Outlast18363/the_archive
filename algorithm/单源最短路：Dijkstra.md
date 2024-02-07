@@ -2,7 +2,7 @@
 
 ## 题目描述
 
-给定一个 $n$ 个点，$m$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。
+给定一个 $n$ 个点， $m$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。
 
 数据保证你能从 $s$ 出发到任意点。
 
@@ -51,6 +51,102 @@ $0 \leq w_i \leq 10 ^ 9$,
 
 $0 \leq \sum w_i \leq 10 ^ 9$。
 
-本题数据可能会持续更新，但不会重测，望周知。
+---
 
-2018.09.04 数据更新 from @zzq
+## 算法思路
+
+## 代码
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static class Edge{
+        int to, w; //去到的点，权重
+        Edge(int t, int w){
+            to = t; this.w = w;
+        }
+    }
+    static ArrayList<Edge> graph[];
+    static PriorityQueue<Edge> q = new PriorityQueue<>((a, b) -> a.w - b.w); //按权从小到大
+    static int dis[], inf = (int) 1e9 + 5;
+    static boolean vis[];
+    static Kattio in;
+
+    public static void main(String[] args) throws IOException {
+        in = new Kattio();
+        int n = in.nextInt(), m = in.nextInt(), s = in.nextInt(); //n： 点个数，m：边个数，s：源点编号
+        graph = new ArrayList[n+1];
+        dis = new int[n+1]; //dis[i]：i 点到原点的距离
+        vis = new boolean[n+1]; //一个点是否已被标记为白点
+        for(int i = 1; i <= n; i++) {
+            graph[i] = new ArrayList<>();
+            dis[i] = inf;
+        }
+
+        //建图
+        for(int i = 0; i < m; i++){
+            int u = in.nextInt(), v = in.nextInt(), w = in.nextInt(); //u: from, v: to, w: weight
+            graph[u].add(new Edge(v, w)); //加入权边
+        }
+
+        dij(s);
+
+        for(int i = 1; i <= n; i++) in.print(dis[i] + " ");
+        in.close();
+    }
+
+     static void dij(int s){
+        dis[s] = 0;
+        q.add(new Edge(s, 0));
+
+        while(!q.isEmpty()){
+            Edge e = q.poll();
+            int u = e.to;
+            if(vis[u]) continue; //如果已经是白点就下一个
+            vis[u] = true; //标记为白点
+
+            //更新这个白点相邻节点的距离
+            for(Edge ed : graph[u]){
+                int next = ed.to; int d = ed.w;
+                if(dis[u] + d < dis[next]){
+                    dis[next] = dis[u] + d; //松弛化（更新最短距离）
+                    q.add(new Edge(next, dis[next]));
+                }
+            }
+        }
+    }
+}
+
+class Kattio extends PrintWriter {
+    private BufferedReader r;
+    private StringTokenizer st;
+    // standard input
+    public Kattio() { this(System.in,System.out); }
+    public Kattio(InputStream i, OutputStream o) {
+        super(o);
+        r = new BufferedReader(new InputStreamReader(i));
+    }
+    // USACO-style file input
+    public Kattio(String problemName) throws IOException {
+        super(problemName+".out");
+        r = new BufferedReader(new FileReader(problemName+".in"));
+    }
+    // returns null if no more input
+    public String next() {
+        try {
+            while (st == null || !st.hasMoreTokens())
+                st = new StringTokenizer(r.readLine());
+            return st.nextToken();
+        } catch (Exception e) {}
+        return null;
+    }
+    public String nextLine() {
+        try {return r.readLine();} catch (Exception e) {}
+        return null;
+    }
+    public int nextInt() { return Integer.parseInt(next()); }
+    public double nextDouble() { return Double.parseDouble(next()); }
+    public long nextLong() { return Long.parseLong(next()); }
+}
+```
