@@ -94,7 +94,7 @@ public class Main {
 
         dij(s);
 
-        for(int i = 1; i <= n; i++) in.print(dis[i] + " ");
+        for(int i = 1; i <= n; i++) in.print(dis[i] + " "); //输出源点到每个点的最短距离
         in.close();
     }
 
