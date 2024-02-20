@@ -16,3 +16,6 @@ https://www.cnblogs.com/yspm/p/12246406.html
 ### 可能会用到：
 基环树：
 https://www.luogu.com.cn/blog/ShadderLeave/ji-huan-shu-bi-ji
+
+### 轻量级平衡树：
+https://www.luogu.com.cn/blog/command-block/yi-zhong-qing-liang-ji-ping-heng-shu
