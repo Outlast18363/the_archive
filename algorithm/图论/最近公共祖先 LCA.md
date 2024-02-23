@@ -86,6 +86,7 @@ public class Main {
     static ArrayList<Integer> adj[];
     static int dep[], fa[][];
     static Kattio in;
+
     public static void main(String[] args) throws IOException {
         in = new Kattio();
         int n = in.nextInt(), m = in.nextInt(), s = in.nextInt(); //节点数，询问数，根节点标号
@@ -108,6 +109,7 @@ public class Main {
         }
         in.close();
     }
+
     static void dfs(int u, int father){
         dep[u] = dep[father] + 1;
 
@@ -118,6 +120,7 @@ public class Main {
             if(v != father) dfs(v, u);
         }
     }
+
     static int lca(int u, int v){
         if(dep[u] < dep[v]){
             int temp = u; u = v; v = temp;
