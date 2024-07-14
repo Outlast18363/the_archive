@@ -1,1 +1,1 @@
-# The place I upload algorithm related content, functioning as an _archive_. The main programming language used would be Java.
+# This is the place where I upload algorithm-related content, functioning as an archive. The main programming language used is Java.
