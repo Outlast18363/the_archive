@@ -91,7 +91,7 @@ public class Main {
         //求坐标和 以及 计算锚点牛坐标
         for(int i=l; i<=mid; i++) sum1+=cows[i].x;
 
-        for(int a=l, b=mid+1; b<=r; b++){ //每次选择一个 b 来计算贡献 （因为 b 边的所有牛的 v 都一定比左边大）
+        for(int a=l, b=mid+1; b<=r; b++){ //每次选择一个 b 来计算贡献 （因为 b 右边的所有牛的 v 都一定比左边大）
             
             //以及调整坐标和
 
